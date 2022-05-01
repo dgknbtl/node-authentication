@@ -1,0 +1,15 @@
+extends layout
+block content
+   .card
+      .card-body
+         h5.text-center.mb-3 Login
+         form(action="/users/login" method="POST")
+            div.form-group
+               label(for="email") E-Mail
+               input(class="form-control" type="email" id="email" name="email" placeholder="E-Mail")
+            div.form-group
+               label(for="password") Password
+               input(class="form-control" type="password" id="password" name="password" placeholder="Create Password")
+            button(type="submit" class="btn w-100 btn-md btn-dark mt-2") Register
+            p.mt-2.text-center No account? 
+               a.text-dark(href="/users/register"): strong Register 
