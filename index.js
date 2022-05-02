@@ -24,10 +24,6 @@ app.use(
   })
 );
 
-app.use(function (err, req, res, next) {
-  console.log(err);
-});
-
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());

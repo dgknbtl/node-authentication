@@ -33,12 +33,10 @@ module.exports = function (passport) {
     done(null, user.id);
   });
   passport.deserializeUser(async (id, done) => {
-    console.log(id);
     const user = await UserService.find(id);
     if (!user) {
       done(err);
     }
     done(null, user);
-    console.log(user);
   });
 };
