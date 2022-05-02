@@ -1,3 +1,16 @@
-if errors 
-   each err in errors
-      div.alert.alert-dark #{err.msg}
+if messages
+   each msg in messages
+      div.alert.alert-dark.alert-dismissible.fade.show #{msg.body}
+         button.close(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+
+if success_message!=""
+   div.alert.alert-success.alert-dismissible.fade.show #{success_message}
+      button.close(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+
+if error_message!=""
+   div.alert.alert-danger.alert-dismissible.fade.show #{error_message}
+      button.close(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+
+if error!=""
+   div.alert.alert-danger.alert-dismissible.fade.show #{error}
+      button.close(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")

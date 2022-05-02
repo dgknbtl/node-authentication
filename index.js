@@ -3,12 +3,43 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/users");
 const indexRouter = require("./routes/index");
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
 require("./mongo-connection");
 
 const app = express();
 
+require("./middlewares/passport")(passport);
+
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// express session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(function (err, req, res, next) {
+  console.log(err);
+});
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success_message = req.flash("success_message");
+  res.locals.error_message = req.flash("error_message");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);

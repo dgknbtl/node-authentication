@@ -1,36 +1,22 @@
-const { UserService } = require("../services");
+const { UserController } = require("../controllers");
 const router = require("express").Router();
+const passport = require("passport");
+
+const { forwardAuthenticated } = require("../middlewares/auth");
 
 router.get("/", (req, res) => {
   res.send("Users");
 });
 
-router.get("/login", (req, res) => res.render("login"));
+router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
+router.get("/register", forwardAuthenticated, (req, res) =>
+  res.render("register")
+);
 
-router.get("/register", (req, res) => res.render("register"));
+router.post("/login", UserController.passportAuthenticate);
 
-router.post("/login", async (req, res, next) => {
-  try {
-    const { email } = req.body;
-    const user = await UserService.findBy("email", email);
-    res.send(user);
-  } catch (err) {
-    next(err);
-  }
-});
+router.post("/register", UserController.createUser);
 
-router.post("/register", async (req, res, next) => {
-  try {
-    const { name, email, password, password2 } = req.body;
-    if (!(email && password && password && password2)) {
-      res.render("register", { msg: "All input is required!" });
-    }
-
-    const user = await UserService.insert(req.body);
-    res.send(user);
-  } catch (err) {
-    next(err);
-  }
-});
+router.get("/logout", UserController.logout);
 
 module.exports = router;
