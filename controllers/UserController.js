@@ -18,14 +18,17 @@ async function createUser(req, res, next) {
       messages.push({ body: "Password do not match." });
     }
 
+    if (password.length < 6) {
+      messages.push({ body: "Password must be at least 6 characters." });
+    }
+
     if (messages.length) {
       return res.render("register", { messages });
     }
 
     const user = await UserService.findBy("email", email);
     if (!user.length) {
-      const newUser = await UserService.insert(req.body);
-      console.log(newUser);
+      await UserService.insert(req.body);
       req.flash(
         "success_message",
         "You are registered successfully and can now log in."
@@ -35,7 +38,7 @@ async function createUser(req, res, next) {
     messages.push({ body: "This email is already in use." });
     return res.render("register", { messages });
   } catch (err) {
-    return res.status(err.cod).send(err);
+    return res.status(500).send(err.message);
   }
 }
 
