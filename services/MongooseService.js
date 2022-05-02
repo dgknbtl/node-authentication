@@ -6,6 +6,10 @@ class MongooseService {
   async insert(body) {
     return await this.model.create(body);
   }
+
+  async findBy(property, value) {
+    return this.model.find({ [property]: value });
+  }
 }
 
 module.exports = MongooseService;
