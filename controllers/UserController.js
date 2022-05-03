@@ -33,7 +33,7 @@ async function createUser(req, res, next) {
         "success_message",
         "You are registered successfully and can now log in."
       );
-      res.redirect("/users/login");
+      return res.status(200).redirect("/users/login");
     }
     messages.push({ body: "This email is already in use." });
     return res.render("register", { messages });
