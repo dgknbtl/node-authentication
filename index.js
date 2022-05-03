@@ -6,14 +6,16 @@ const indexRouter = require("./routes/index");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const passportConfig = require("./config/passport");
 require("./mongo-connection");
 
 const app = express();
 
-require("./middlewares/passport")(passport);
-
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// passport config
+passportConfig(passport);
 
 // express session
 app.use(
