@@ -1,6 +1,6 @@
 if messages
    each msg in messages
-      div.alert.alert-dark.alert-dismissible.fade.show #{msg.body}
+      div.alert.alert-danger.alert-dismissible.fade.show #{msg.body}
          button.close(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
 
 if success_message!=""

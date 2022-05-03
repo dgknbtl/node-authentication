@@ -1,7 +1,8 @@
 extends layout
 block content
-   .card
+   .card.dashboard
       .card-body
-         h5.text-center.mb-3 Welcome
-         h3.text-center.mb-3 #{name}
-         a(href="/users/logout" class="btn btn-md btn-dark w-100"): strong Log out 
+         .dashboard-head
+            p Welcome 
+            .dashboard-username  #{name}
+            a(href="/users/logout" class="dashboard-logout"): strong Log out 
