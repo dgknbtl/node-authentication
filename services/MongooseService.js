@@ -3,6 +3,10 @@ class MongooseService {
     this.model = Model;
   }
 
+  save(body) {
+    return this.model.insertMany(body);
+  }
+
   async insert(body) {
     return await this.model.create(body);
   }
@@ -10,9 +14,11 @@ class MongooseService {
   async find(id) {
     return this.model.findById(id);
   }
+
   async findBy(property, value) {
     return this.model.find({ [property]: value });
   }
+
   async findOne(property, value) {
     return this.model.findOne({ [property]: value });
   }
