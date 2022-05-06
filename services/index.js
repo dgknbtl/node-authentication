@@ -1,4 +1,4 @@
-const MongooseService = require("./MongooseService");
-const UserService = require("./UserService");
+const MongooseService = require('./MongooseService')
+const UserService = require('./UserService')
 
-module.exports = { MongooseService, UserService };
+module.exports = {MongooseService, UserService}
