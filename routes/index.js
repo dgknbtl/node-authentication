@@ -1,14 +1,19 @@
 const router = require('express').Router()
-const {ensureAuthenticated} = require('../middlewares/auth')
 
-router.get('/', (req, res) => {
-   res.send('Hello')
-})
-
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
-   res.render('dashboard', {
-      name: req.user.name,
-   })
-})
+// router
+//    .get('/task', (req, res) => {
+//       res.send('Get')
+//    })
+//    .post('/task', (req, res) => {
+//       res.send('Post')
+//    })
+//    .put('/task/:taskId', (req, res) => {
+//       res.send('Put')
+//       console.log(req.params)
+//    })
+//    .delete('/task/:taskId', (req, res) => {
+//       res.send('Delete')
+//       console.log(req.params)
+//    })
 
 module.exports = router

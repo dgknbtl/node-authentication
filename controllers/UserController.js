@@ -33,7 +33,7 @@ async function createUser(req, res, next) {
             'success_message',
             'You are registered successfully and can now log in.'
          )
-         return res.status(200).redirect('/users/login')
+         return res.status(200).redirect(303, '/users/login')
       }
       messages.push({body: 'This email is already in use.'})
       return res.render('register', {messages})
@@ -53,5 +53,5 @@ async function passportAuthenticate(req, res, next) {
 async function logout(req, res) {
    req.logout()
    req.flash('success_message', 'You are logged out.')
-   res.redirect('/users/login')
+   res.redirect(303, '/users/login')
 }

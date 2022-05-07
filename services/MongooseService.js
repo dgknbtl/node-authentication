@@ -22,6 +22,14 @@ class MongooseService {
    async findOne(property, value) {
       return this.model.findOne({[property]: value})
    }
+
+   async removeOne(property, value) {
+      return this.model.deleteOne({[property]: value})
+   }
+
+   async update(id, body) {
+      return this.model.findOneAndUpdate(id, body)
+   }
 }
 
 module.exports = MongooseService

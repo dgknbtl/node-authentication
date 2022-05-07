@@ -5,4 +5,6 @@ block content
          .dashboard-head
             p Welcome 
             .dashboard-username  #{name}
-            a(href="/users/logout" class="dashboard-logout"): strong Log out 
+            a(href="/users/logout" class="dashboard-logout"): strong Log out
+         include ./inc/messages.pug
+         include ./inc/tasks.pug
