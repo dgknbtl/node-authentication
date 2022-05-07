@@ -1,9 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
 const {UserService} = require('../services')
 const bcrypt = require('bcrypt')
-const res = require('express/lib/response')
 
-module.exports = function (passport) {
+module.exports = function(passport) {
    passport.use(
       new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
          try {
@@ -14,7 +13,7 @@ module.exports = function (passport) {
                })
             }
 
-            await user.comparePassword(password, function (err, isMatch) {
+            await user.comparePassword(password, function(err, isMatch) {
                if (err) done(err)
                if (!isMatch) {
                   return done(null, false, {message: 'Password incorrect'})
@@ -22,7 +21,7 @@ module.exports = function (passport) {
                return done(null, user)
             })
          } catch (err) {
-            return res.status(err.cod).send(err)
+            throw new Error(err)
          }
       })
    )
