@@ -25,19 +25,31 @@ html(lang="en")
          }
          .card-body{padding:30px;}
          .card{flex:1; border:0; box-shadow: 0 10px 40px rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.03)}
-         .dashboard{
 
-         }
          .btn,.form-control{padding:.7rem 1rem;}
          .dashboard-head{display:flex; align-items:center; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid rgba(0,0,0,.1)}
          .dashboard-username{font-weight:700; margin-left:5px;}
          .dashboard-logout{margin-left:auto; margin-right:0; color:#000;}
          .alert-dismissible .btn-close{padding:16px;}
          .alert{font-size:16px; padding:0.7rem 1rem; border:0; opacity:.9}
-         .btn-close{background-size: 0.6em;}
+         .btn-close{background-size: 0.6em;}.todo{}
+         .task-form{display:flex;}
+         .task-form button{margin-left:10px}
+         .task-list{margin-top:20px;}
+         .task-item{display:flex; align-items:center;justify-content:space-between;}
+         .task-item  + .task-item{margin-top:10px;}
+         .task-title{ font-size:18px; font-weight:500; color:#000}
+         .task-item.task--completed .task-title{text-decoration: line-through; color:#777}
+         .task-buttons{display:flex;}
+         .task-buttons button{width:20px; height:20px; background:transparent; color:#888; box-shadow:none; border:0; margin-left:8px;}
+         .task-buttons button svg{width:20px;}
+         .task-buttons button:hover{color:#000;}
    body
       .container.container-sm
          block content
 
 
-      script( src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+      script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js")
+      script.
+         feather.replace()

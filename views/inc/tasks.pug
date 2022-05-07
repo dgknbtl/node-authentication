@@ -1,0 +1,18 @@
+.task
+   form.task-form(action="/dashboard" method="POST")
+      input(type="text" class="form-control" name="task" placeholder="Enter new task")
+      button(type="submit" class="btn btn-dark") Add
+   .task-list
+      if tasks
+         each task in tasks
+            div(class=task.isCompleted ? 'task-item task--completed':'task-item')
+               .task-title #{task.body}
+               .task-buttons
+                  form(method="POST" action=`/dashboard/${task._id}?_method=DELETE`) 
+                     button(type="submit") 
+                        .task-remove: i(data-feather="trash")
+                  form(method="POST" action=`/dashboard/${task._id}?_method=PATCH`) 
+                     button(type="submit") 
+                        .task-remove: i(data-feather="check")
+         else
+            div.text-center.pt-2.pb-2  There are no tasks yet
