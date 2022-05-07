@@ -9,15 +9,19 @@ module.exports = {
 
 // create a new task
 async function newTask(req, res) {
-   let messages = []
-   const {task} = req.body
+   try {
+      let messages = []
+      const {task} = req.body
 
-   if (!task) messages.push({body: 'Please, enter a task...'})
-   if (messages.length) return res.render('dashboard', {messages, name: req.user.name})
+      if (!task) messages.push({body: 'Please, enter a task...'})
+      if (messages.length) return res.render('dashboard', {messages, name: req.user.name})
 
-   await UserService.task(req.user, task)
-   req.flash('success_message', 'The task was created successfully.')
-   return res.status(200).redirect(303, '/dashboard')
+      await UserService.newTask(req.user, task)
+      req.flash('success_message', 'The task was created successfully.')
+      return res.status(200).redirect(303, '/dashboard')
+   } catch (error) {
+      res.status(404).send(`The task is not found!`)
+   }
 }
 
 async function getTasks(req, res, next) {

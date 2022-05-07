@@ -6,8 +6,6 @@ router.get('/', ensureAuthenticated, DashboardController.getTasks)
 
 router.post('/', ensureAuthenticated, DashboardController.newTask)
 
-// router.get('/:taskId', ensureAuthenticated, DashboardController.getTask)
-
 router.delete('/:taskId', ensureAuthenticated, DashboardController.removeTask)
 
 router.patch('/:taskId', ensureAuthenticated, DashboardController.updateTask)

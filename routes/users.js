@@ -8,9 +8,9 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'))
 
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'))
 
-router.post('/login', UserController.passportAuthenticate)
+router.post('/login', UserController.authenticateUser)
 
-router.post('/register', UserController.createUser)
+router.post('/register', UserController.newUser)
 
 router.get('/logout', UserController.logout)
 

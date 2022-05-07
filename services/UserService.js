@@ -3,7 +3,7 @@ const TaskService = require('./TaskService')
 const UserModel = require('../models/user')
 
 class UserService extends MongooseService {
-   async task(user, taskBody) {
+   async newTask(user, taskBody) {
       const newTask = await TaskService.insert({
          user,
          body: taskBody,

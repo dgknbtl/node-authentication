@@ -2,12 +2,12 @@ const {UserService} = require('../services')
 const passport = require('passport')
 
 module.exports = {
-   createUser,
-   passportAuthenticate,
+   newUser,
+   authenticateUser,
    logout,
 }
 
-async function createUser(req, res, next) {
+async function newUser(req, res, next) {
    let messages = []
    try {
       const {name, email, password, confirmPassword} = req.body
@@ -42,7 +42,7 @@ async function createUser(req, res, next) {
    }
 }
 
-async function passportAuthenticate(req, res, next) {
+async function authenticateUser(req, res, next) {
    await passport.authenticate('local', {
       successRedirect: '/dashboard',
       failureRedirect: '/users/login',
